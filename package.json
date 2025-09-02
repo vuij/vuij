@@ -4,7 +4,16 @@
     "author": "trunow",
     "scripts": {
         "test": "echo 'vuij'",
-        "u": "rm -rf node_modules && npm i"
+        "u": "rm -rf node_modules && npm i",
+        "prepublishOnly": "npm version patch -m 'Bump version to %s'",
+        "postpublish": "git push origin main --tags"
+    },
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/vuij/vuij.git"
+    },
+    "publishConfig": {
+        "registry": "https://registry.npmjs.org/"
     },
     "dependencies": {
         "vue": "^3.5",
