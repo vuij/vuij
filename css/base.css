@@ -1,0 +1,1016 @@
+/* Base variables */
+:root {
+  /** COMMON **/
+  /* colors */
+  --vuij-color: CanvasText;
+  --vuij-color-primary: LinkText;
+  --vuij-color-secondary: GrayText;
+  --vuij-color-info: GrayText;
+  --vuij-color-success: VisitedText;
+  --vuij-color-warning: Mark;
+  --vuij-color-danger: ActiveText;
+  --vuij-color-accent: VisitedText;
+  --vuij-background-color: Canvas;
+  --vuij-background-color-hover: ButtonFace;
+  --vuij-background-color-active: Highlight;
+  --vuij-background-color-accent: VisitedText;
+  --vuij-background-color-blur: #8882;
+  /* --vuij-background-color-primary: LinkText;
+  --vuij-background-color-secondary: GrayText;
+  --vuij-background-color-info: GrayText;
+  --vuij-background-color-success: VisitedText;
+  --vuij-background-color-warning: Mark;
+  --vuij-background-color-danger: ActiveText; */
+  /* font */
+  --vuij-font-family: inherit;
+  --vuij-font-size: inherit;
+  --vuij-font-weight: inherit;
+  --vuij-font-size-smaller: smaller;
+  --vuij-font-size-small: small;
+  --vuij-font-size-large: large;
+  --vuij-font-size-larger: larger;
+  /* border */
+  --vuij-border-width: 1px;
+  --vuij-border-style: solid;
+  --vuij-border-color: GrayText;
+  --vuij-border-radius: 0;
+  --vuij-border-radius-small: 0;
+  --vuij-border-radius-large: 0;
+  /* outline */
+  --vuij-outline-width: 1px;
+  --vuij-outline-style: solid;
+  --vuij-outline-color: transparent;
+  /* shadow */
+  --vuij-shadow-color: Highlight;
+  --vuij-shadow-blur: 8px;
+  --vuij-active-shadow: 0 0 var(--vuij-shadow-blur) var(--vuij-shadow-color);
+  --vuij-active-outline-color: Highlight;
+  /* z-index */
+  --vuij-z-index: 0;
+  --vuij-z-index-back: -1;
+  --vuij-z-index-next: 1;
+  --vuij-z-index-modal: 9;
+  --vuij-z-index-top: 11;
+  /* close */
+  --vuij-close-size: 1rem;
+  /** ELEMENTS **/
+  /* formel */
+  --vuij-formel-color: FieldText;
+  --vuij-formel-background-color: Field;
+  --vuij-formel-border-width: var(--vuij-border-width);
+  --vuij-formel-border-style: var(--vuij-border-style);
+  --vuij-formel-border-color: var(--vuij-border-color);
+  --vuij-formel-border-radius: var(--vuij-border-radius-small);
+  --vuij-formel-outline-width: var(--vuij-outline-width);
+  --vuij-formel-outline-style: var(--vuij-outline-style);
+  --vuij-formel-outline-color: var(--vuij-outline-color);
+  --vuij-formel-font-family: var(--vuij-font-family);
+  --vuij-formel-font-size: var(--vuij-font-size);
+  --vuij-formel-line-height: var(--vuij-line-height);
+  --vuij-formel-padding: 0.25em 0.5em;
+  /* link */
+  --vuij-link-color: LinkText;
+  --vuij-link-text-decoration: underline;
+  /* card */
+  --vuij-card-border-width: 1px;
+  --vuij-card-border-style: solid;
+  --vuij-card-border-color: GrayText;
+  --vuij-card-border-radius: 0;
+  /* calendar */
+}
+
+/* Link */
+.vuij-link {
+  text-decoration: var(--vuij-link-text-decoration, underline);
+  text-transform: var(--vuij-link-text-transform, none);
+  color: var(--vuij-link-color, LinkText);
+  cursor: var(--vuij-link-cursor, pointer);
+}
+
+.vuij-link:visited {
+  --vuij-link-color: var(--vuij-link-color-visited, VisitedText);
+}
+
+/* Form Element (button, input, textarea, pseudo-input) */
+.vuij-formel {
+  color: var(--vuij-formel-color);
+  background-color: var(--vuij-formel-background-color);
+  border-width: var(--vuij-formel-border-width);
+  border-style: var(--vuij-formel-border-style);
+  border-color: var(--vuij-formel-border-color);
+  border-radius: var(--vuij-formel-border-radius);
+  outline-color: var(--vuij-formel-outline-color);
+  outline-width: var(--vuij-formel-outline-width);
+  outline-style: var(--vuij-formel-outline-style);
+  font-family: var(--vuij-formel-font-family);
+  font-size: var(--vuij-formel-font-size);
+  line-height: var(--vuij-formel-line-height);
+}
+
+/* Button */
+.vuij-button {
+  display: var(--vuij-button-display, inline-flex);
+  gap: var(--vuij-button-gap, 0.4em);
+  align-items: var(--vuij-button-align-items, center);
+  align-self: var(--vuij-button-align-self, stretch);
+  flex-wrap: var(--vuij-button-flex-wrap, nowrap);
+  flex: var(--vuij-button-flex, none);
+  white-space: var(--vuij-button-white-space, nowrap);
+  font-size: var(--vuij-button-font-size, var(--vuij-formel-font-size));
+  line-height: var(--vuij-button-line-height, var(--vuij-formel-line-height));
+  text-decoration: var(--vuij-button-text-decoration, none);
+  text-transform: var(--vuij-button-text-transform, none);
+  color: var(--vuij-button-color, ButtonText);
+  width: var(--vuij-button-width, fit-content);
+  background-color: var(--vuij-button-background-color, ButtonFace);
+  border-width: var(--vuij-button-border-width, var(--vuij-formel-border-width));
+  border-style: var(--vuij-button-border-style, var(--vuij-formel-border-style));
+  border-color: var(--vuij-button-border-color, var(--vuij-formel-border-color));
+  border-radius: var(--vuij-button-border-radius, var(--vuij-formel-border-radius));
+  padding: var(--vuij-button-padding, 0.25em 0.75em);
+  cursor: var(--vuij-button-cursor, pointer);
+}
+
+/* .vuij-button[href] {
+  padding: 0;
+  background-color: transparent;
+  color: var(--color-link);
+} */
+
+.vuij-button:active,
+.vuij-button:focus-visible {
+  box-shadow: var(--vuij-active-shadow);
+}
+
+.vuij-button[disabled] {
+  --vuij-button-cursor: var(--vuij-cursor-disabled, not-allowed);
+  /* --vuij-button-color: GrayText; */
+  opacity: var(--vuij-button-opacity-disabled, var(--vuij-opacity-disabled, 0.5));
+}
+
+.vuij-button_link {
+  --vuij-button-border-width: var(--vuij-button-link-border-width, 0);
+  --vuij-button-color: var(--vuij-button-link-color, var(--vuij-link-color, LinkText));
+  --vuij-button-background-color: var(--vuij-button-link-background-color, var(--vuij-link-background-color, none));
+  --vuij-button-padding: var(--vuij-button-link-padding, 0);
+  --vuij-button-text-decoration: var(--vuij-button-link-text-decoration, var(--vuij-link-text-decoration, underline));
+  --vuij-button-text-transform: var(--vuij-button-link-text-transform, var(--vuij-link-text-transform, none));
+}
+
+.vuij-button_link:active,
+.vuij-button_link:focus-visible {
+  box-shadow: none;
+}
+
+/* Ctrl, Label */
+.vuij-ctrl {
+  display: var(--vuij-ctrl-display, inline-flex);
+  flex-direction: var(--vuij-ctrl-flex-direction, column);
+  /*row*/
+  gap: var(--vuij-ctrl-gap, 0.25rem);
+}
+
+.vuij-label {
+  color: var(--vuij-label-color, GrayText);
+  display: var(--vuij-label-display, inline-flex);
+  gap: var(--vuij-label-gap, 0.25rem);
+  justify-content: var(--vuij-label-justify-content, flex-start);
+  align-items: var(--vuij-label-align-items, center);
+  flex: var(--vuij-label-flex, auto);
+  /* width: var(--vuij-label-width, 100%); */
+  width: var(--vuij-label-width, fit-content);
+  padding: var(--vuij-label-padding, 0);
+  font-style: var(--vuij-label-font-style, normal);
+  font-weight: var(--vuij-label-font-weight, normal);
+  font-size: var(--vuij-label-font-size, normal);
+  line-height: var(--vuij-label-line-height, normal);
+  text-decoration: var(--vuij-label-text-decoration, none);
+  text-transform: var(--vuij-label-text-transform, none);
+  white-space: var(--vuij-label-white-space, normal);
+  cursor: var(--vuij-label-cursor, default);
+}
+
+.vuij-label__box {
+  position: var(--vuij-label-box-position, relative);
+  /* width: var(--vuij-label-box-width, fit-content); */
+  width: var(--vuij-label-box-width, 100%);
+  padding: var(--vuij-label-box-padding, 0);
+}
+.vuij-label__text {
+  position: var(--vuij-label-text-position, relative);
+  width: var(--vuij-label-text-width, 100%);
+  padding: var(--vuij-label-text-padding, 0);
+  display: var(--vuij-label-text-display, inline);
+  box-sizing: var(--vuij-label-text-box-sizing, border-box);
+}
+
+.vuij-ctrl_check {
+  --vuij-ctrl-display: flex;
+  --vuij-ctrl-flex-direction: row;
+  --vuij-label-width: var(--vuij-ctrl-check-label-width, fit-content);
+  /* gap: 0.5em; */
+  /* line-height: 1; */
+}
+
+.vuij-ctrl_input {
+  --vuij-label-color: var(--vuij-ctrl-input-label-color, GrayText);
+  --vuij-label-font-size: var(--vuij-ctrl-input-label-font-size, var(--vuij-font-size-small, smaller));
+}
+
+/* .vuij-options .vuij-ctrl_check, */
+.vuij-options .vuij-label {
+  --vuij-listitem-label-flex: var(--vuij-options-label-flex, 1);
+  --vuij-listitem-label-width: var(--vuij-options-label-width, 100%);
+  /* --vuij-listitem-label-box-padding: var(--vuij-options-label-padding, .5rem); */
+  --vuij-listitem-label-box-padding: var(--vuij-options-label-padding, 0);
+}
+
+/* Input */
+.vuij-input {
+  color: var(--vuij-input-color, var(--vuij-formel-color, FieldText));
+  background-color: var(--vuij-input-background-color, var(--vuij-formel-background-color, Field));
+  border-color: var(--vuij-input-border-color, var(--vuij-formel-border-color));
+  border-width: var(--vuij-input-border-width, var(--vuij-formel-border-width));
+  border-style: var(--vuij-input-border-style, var(--vuij-formel-border-style));
+  border-radius: var(--vuij-input-border-radius, var(--vuij-formel-border-radius));
+  outline-color: var(--vuij-input-outline-color, var(--vuij-formel-outline-color));
+  outline-width: var(--vuij-input-outline-width, var(--vuij-formel-outline-width));
+  outline-style: var(--vuij-input-outline-style, var(--vuij-formel-outline-style));
+  font-family: var(--vuij-input-font-family, var(--vuij-font-family));
+  font-size: var(--vuij-input-font-size, var(--vuij-font-size));
+  line-height: var(--vuij-input-line-height, normal);
+  padding: var(--vuij-input-padding, 0.25em 0.5em);
+}
+
+.vuij-inputtag {
+  color: var(--vuij-input-color, var(--vuij-formel-color, FieldText));
+  background-color: var(--vuij-input-background-color, var(--vuij-formel-background-color, Field));
+  outline-color: var(--vuij-input-outline-color, var(--vuij-formel-outline-color));
+  outline-width: var(--vuij-input-outline-width, var(--vuij-formel-outline-width));
+  outline-style: var(--vuij-input-outline-style, var(--vuij-formel-outline-style));
+  font-family: var(--vuij-input-font-family, var(--vuij-font-family));
+  font-size: var(--vuij-input-font-size, var(--vuij-font-size));
+  line-height: var(--vuij-input-line-height, normal);
+  /* padding: var(--vuij-inputtag-padding, 0 0.25em); */
+}
+
+/*[disabled][readonly] ?*/
+
+.vuij-input.vuij-input_stretch:has(.vuij-tags):has(.vuij-inputtag) {
+  padding: var(--vuij-input-has-tag-padding, 0.25em);
+}
+
+.vuij-input.vuij-input_stretch:has(.vuij-tags):has(.vuij-inputtag) .vuij-inputtag {
+  padding: var(--vuij-input-has-tag-inputtag-padding, 0.25em 0);
+}
+
+.vuij-input.vuij-input_stretch .vuij-tags:not(:empty) {
+  /* background-color: pink; */
+  flex-grow: 1;
+  flex-shrink: 0;
+  flex-basis: auto;
+}
+
+.vuij-input.vuij-input_stretch .vuij-inputtag_naked {
+  /* background-color: yellow; */
+  flex-grow: 1;
+  flex-shrink: 1;
+  flex-basis: auto;
+  border: none;
+  outline: none;
+  min-width: 80px;
+  /* max-width: 300px; */
+}
+
+.vuij-input:focus-visible,
+.vuij-input:has(.vuij-inputtag:focus-visible) {
+  box-shadow: var(--vuij-active-shadow);
+  outline-color: var(--vuij-active-outline-color);
+}
+
+/* input.vuij-input, 
+.vuij-input input {
+  min-width: 40px !important;
+} */
+.vuij-group>.vuij-input_stretch {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: stretch;
+  /* gap: 0.25rem; */
+  width: auto;
+}
+
+.vuij-group,
+.vuij-ctrl__slot,
+.vuij-group>* {
+  display: var(--vuij-group-display, inline-flex);
+  gap: var(--vuij-group-gap, 0);
+  flex-wrap: var(--vuij-group-flex-wrap, nowrap);
+  flex-direction: var(--vuij-group-flex-direction, row);
+  justify-content: var(--vuij-group-justify-content, flex-start);
+  align-items: var(--vuij-group-align-items, stretch);
+  flex: var(--vuij-group-flex, 1);
+  position: var(--vuij-group-position, relative);
+  margin: var(--vuij-group-margin, 0);
+  min-width: var(--vuij-group-min-width, fit-content);
+  width: var(--vuij-group-width, auto);
+  max-width: var(--vuij-group-max-width, 100%);
+}
+
+/* .vuij-group > *:not(:first-child) {
+  margin-left: -1px;
+} */
+
+/* Check */
+.vuij-check {
+  position: var(--vuij-check-position, relative);
+  display: var(--vuij-check-display, inline-flex);
+  justify-content: var(--vuij-check-justify-content, center);
+  align-items: var(--vuij-check-align-items, center);
+}
+
+.vuij-check:has(:checked) {
+  color: var(--vuij-color-accent);
+}
+
+.vuij-options_hidechecks .vuij-check {
+  /* display: none; */
+  position: absolute;
+  opacity: 0;
+  z-index: -1;
+}
+
+/* Textarea */
+.vuij-textarea {
+  color: var(--vuij-textarea-color, var(--vuij-formel-color, FieldText));
+  background-color: var(--vuij-textarea-background-color, var(--vuij-formel-background-color, Field));
+  border-color: var(--vuij-textarea-border-color, var(--vuij-formel-border-color));
+  border-width: var(--vuij-textarea-border-width, var(--vuij-formel-border-width));
+  border-style: var(--vuij-textarea-border-style, var(--vuij-formel-border-style));
+  border-radius: var(--vuij-textarea-border-radius, var(--vuij-formel-border-radius));
+  font-family: var(--vuij-textarea-font-family, var(--vuij-formel-font-family));
+  font-size: var(--vuij-textarea-font-size, var(--vuij-formel-font-size));
+  line-height: var(--vuij-textarea-line-height, normal);
+  padding: var(--vuij-textarea-padding, var(--vuij-formel-padding, 0.25em 0.5em));
+  resize: var(--vuij-textarea-resize, both);
+  width: var(--vuij-textarea-width, 100%);
+  max-width: var(--vuij-textarea-max-width, 100%);
+  box-sizing: var(--vuij-textarea-box-sizing, border-box);
+}
+
+/* Fieldset */
+.vuij-fieldset {
+  border-color: var(--vuij-fieldset-border-color, var(--vuij-border-color));
+  border-width: var(--vuij-fieldset-border-width, var(--vuij-border-width));
+  border-style: var(--vuij-fieldset-border-style, var(--vuij-border-style));
+  border-radius: var(--vuij-fieldset-border-radius, var(--vuij-border-radius));
+  padding: var(--vuij-fieldset-padding, 0);
+  margin: var(--vuij-fieldset-margin, 0);
+}
+
+
+.vuij-fieldset_options {
+  --vuij-fieldset-border-width: 0;
+  --vuij-fieldset-max-width: 0;
+  --vuij-fieldset-border-radius: var(--vuij-fieldset-options-border-radius, 0);
+  --vuij-options-width: 100%;
+  min-width: var(--vuij-fieldset-options-min-width, var(--vuij-options-min-width, var(--vuij-label-min-width, 220px)));
+  max-width: var(--vuij-fieldset-options-max-width, none);
+  max-height: var(--vuij-fieldset-options-max-height, none);
+  overflow-y: var(--vuij-fieldset-options-overflow-y, auto);
+}
+.vuij-card_options > .vuij-fieldset_options {
+  --vuij-fieldset-options-border-radius: var(--vuij-fieldset-options-border-radius, var(--vuij-formel-border-radius, var(--vuij-border-radius-small, 0)));
+}
+
+/* Options */
+.vuij-options {
+  width: var(--vuij-options-width, auto);
+  min-width: var(--vuij-options-min-width, var(--vuij-label-min-width, 220px));
+  max-width: var(--vuij-options-max-width, none);
+  max-height: var(--vuij-options-max-height, none);
+  overflow-y: var(--vuij-options-overflow-y, auto);
+}
+
+/* Listbox */
+.vuij-listbox {
+  display: var(--vuij-listbox-display, inline-flex);
+  flex-wrap: var(--vuij-listbox-flex-wrap, nowrap);
+  flex-direction: var(--vuij-listbox-flex-direction, column);
+  justify-content: var(--vuij-listbox-justify-content, flex-start);
+  align-items: var(--vuij-listbox-align-items, stretch);
+  gap: var(--vuij-listbox-gap, 0);
+  padding: var(--vuij-listbox-padding, 0);
+  margin: var(--vuij-listbox-margin, 0);
+  list-style: var(--vuij-listbox-list-style, none);
+  background-color: var(--vuij-listbox-background-color, var(--vuij-background-color, Canvas));
+  outline-color: var(--vuij-listbox-outline-color, var(--vuij-formel-outline-color));
+  outline-width: var(--vuij-listbox-outline-width, var(--vuij-formel-outline-width));
+  outline-style: var(--vuij-listbox-outline-style, var(--vuij-formel-outline-style));
+}
+
+.vuij-listitem {
+  display: var(--vuij-listitem-display, inline-flex);
+  flex-direction: var(--vuij-listitem-flex-direction, row);
+  justify-content: var(--vuij-listitem-justify-content, flex-start);
+  align-items: var(--vuij-listitem-align-items, center);
+  flex: var(--vuij-listitem-flex, none);
+  padding: var(--vuij-listitem-padding, 0);
+  margin: var(--vuij-listitem-margin, 0);
+  cursor: var(--vuij-listitem-cursor, pointer);
+  transition: var(--vuij-listitem-transition, color 0.2s);
+  border-color: var(--vuij-listitem-border-color, var(--vuij-formel-border-color));
+  border-width: var(--vuij-listitem-border-width, 0);
+  border-style: var(--vuij-listitem-border-style, var(--vuij-formel-border-style));
+  border-radius: var(--vuij-listitem-border-radius, var(--vuij-formel-border-radius));
+  /* outline: var(--vuij-listitem-outline, none); */
+  outline-color: var(--vuij-listitem-outline-color, var(--vuij-formel-outline-color));
+  outline-width: var(--vuij-listitem-outline-width, var(--vuij-formel-outline-width));
+  outline-style: var(--vuij-listitem-outline-style, var(--vuij-formel-outline-style));
+  color: var(--vuij-listitem-color, var(--vuij-color, currentColor));
+  background-color: var(--vuij-listitem-background-color, var(--vuij-background-color));
+}
+
+/* .vuij-listitem[aria-current="true"] {
+  color: var(--vuij-listitem-color-current, var(--vuij-color-current, currentColor));
+  background-color: var(--vuij-listitem-background-color-current, var(--vuij-background-color-current));
+} */
+
+/* .vuij-listitem[aria-current="true"], */
+.vuij-listitem:focus-within,
+.vuij-listitem:hover {
+  --vuij-listitem-color: var(--vuij-listitem-color-hover, var(--vuij-color-hover, currentColor));
+  --vuij-listitem-background-color: var(--vuij-listitem-background-color-hover, var(--vuij-background-color-hover));
+}
+
+.vuij-listitem:has(input[checked]), /*hook*/
+.vuij-listitem:has(input:checked) {
+  --vuij-listitem-color: var(--vuij-listitem-color-active, var(--vuij-color-active, currentColor));
+  --vuij-listitem-background-color: var(--vuij-listitem-background-color-active, var(--vuij-background-color-active));
+}
+.vuij-listitem:has(input[checked]):hover, /*hook*/
+.vuij-listitem:has(input:checked):hover {
+  --vuij-listitem-color: var(--vuij-listitem-color-active-hover, var(--vuij-color-active-hover, currentColor));
+  --vuij-listitem-background-color: var(--vuij-listitem-background-color-active-hover, var(--vuij-background-color-active-hover, Highlight));
+}
+
+.vuij-listitem > .vuij-label {
+  --vuij-label-color: var(--vuij-listitem-label-color, currentColor);
+  --vuij-label-cursor: var(--vuij-listitem-label-cursor, pointer);
+  --vuij-label-gap: var(--vuij-listitem-label-gap, 0.5em);
+  --vuij-label-justify-content: var(--vuij-listitem-label-justify-content, flex-start);
+  --vuij-label-flex: var(--vuij-listitem-label-flex, 1);
+  /* --vuij-label-padding: var(--vuij-listitem-label-padding, 0px 4px); */
+  --vuij-label-padding: var(--vuij-listitem-label-padding, 0px);
+  --vuij-label-font-size: var(--vuij-listitem-label-font-size, normal);
+  --vuij-label-font-weight: var(--vuij-listitem-label-font-weight, normal);
+  --vuij-label-text-align: var(--vuij-listitem-label-text-align, center);
+  --vuij-label-text-transform: var(--vuij-listitem-label-text-transform, none);
+  --vuij-label-white-space: var(--vuij-listitem-label-white-space, nowrap);
+}
+.vuij-listitem > .vuij-label > .vuij-label__box {
+  --vuij-label-box-width: var(--vuij-listitem-label-box-width, 100%);
+  --vuij-label-box-padding: var(--vuij-listitem-label-box-padding, 0px);
+}
+.vuij-listitem > .vuij-label > .vuij-label__box > .vuij-label__text {
+  --vuij-label-text-padding: var(--vuij-listitem-label-text-padding, 8px);
+  --vuij-label-text-display: var(--vuij-listitem-label-text-display, inline-block);
+}
+
+/* .vuij-options_hidechecks .vuij-listitem >  .vuij-label {
+  padding: 6px 12px;
+  box-sizing: border-box;
+} */
+
+.vuij-listitem > label > input {
+  opacity: 0.2;
+}
+
+/* Headings h1-h6 */
+.vuij-h1 {
+  font-size: var(--vuij-h1-font-size, 2em);
+}
+
+.vuij-h2 {
+  font-size: var(--vuij-h2-font-size, 1.5em);
+}
+
+.vuij-h3 {
+  font-size: var(--vuij-h3-font-size, 1.17em);
+}
+
+.vuij-h4 {
+  font-size: var(--vuij-h4-font-size, 1em);
+}
+
+.vuij-h5 {
+  font-size: var(--vuij-h5-font-size, 0.83em);
+}
+
+.vuij-h6 {
+  font-size: var(--vuij-h6-font-size, 0.67em);
+}
+
+.vuij-h1,
+.vuij-h2,
+.vuij-h3,
+.vuij-h4,
+.vuij-h5,
+.vuij-h6 {
+  font-weight: var(--vuij-heading-font-weight, bold);
+  margin: var(--vuij-heading-margin, 1em 0 0.5em);
+}
+
+/* Close Button */
+.vuij-close {
+  position: var(--vuij-close-position, absolute);
+  top: var(--vuij-close-top, 0);
+  right: var(--vuij-close-right, 0);
+  display: var(--vuij-close-display, flex);
+  justify-content: var(--vuij-close-justify-content, center);
+  align-items: var(--vuij-close-align-items, center);
+  width: var(--vuij-close-width, 1em);
+  height: var(--vuij-close-height, 1em);
+  padding: var(--vuij-close-padding, 0);
+  cursor: var(--vuij-close-cursor, pointer);
+  overflow: var(--vuij-close-overflow, hidden);
+  box-sizing: var(--vuij-close-box-sizing, border-box);
+  font-size: var(--vuij-close-font-size, var(--vuij-close-size, 1rem));
+  line-height: var(--vuij-close-line-height, normal);
+  color: var(--vuij-close-color, ButtonText);
+  background-color: var(--vuij-close-background-color, ButtonFace);
+  border-width: var(--vuij-close-border-width, var(--vuij-formel-border-width));
+  border-style: var(--vuij-close-border-style, var(--vuij-formel-border-style));
+  border-color: var(--vuij-close-border-color, var(--vuij-formel-border-color));
+  border-radius: var(--vuij-close-border-radius, var(--vuij-formel-border-radius));
+  opacity: var(--vuij-close-opacity, 0.5);
+  z-index: var(--vuij-close-z-index, var(--vuij-close-z-index-next, 1));
+}
+
+.vuij-close:hover {
+  opacity: var(--vuij-close-opacity-hover, 1);
+}
+
+.vuij-close::after {
+  content: var(--vuij-close-content, "×");
+  font: var(--vuij-close-font, lighter 150% / 1 sans-serif);
+  /* margin-top: var(--vuij-close-after-margin-top, -.055em); */
+  margin: var(--vuij-close-after-margin, -2px auto 2px);
+}
+
+/* Notify */
+.vuij-notifies {
+  position: var(--vuij-notifies-position, fixed);
+  top: var(--vuij-notifies-top, 0);
+  right: var(--vuij-notifies-right, 0);
+  bottom: var(--vuij-notifies-bottom, auto);
+  left: var(--vuij-notifies-left, auto);
+  z-index: var(--vuij-notifies-z-index, var(--vuij-z-index-top, 11));
+  display: var(--vuij-notifies-display, flex);
+  gap: var(--vuij-notifies-gap, 1rem);
+  flex-wrap: var(--vuij-notifies-flex-wrap, nowrap);
+  flex-direction: var(--vuij-notifies-flex-direction, column);
+  justify-content: var(--vuij-notifies-justify-content, space-between);
+  align-items: var(--vuij-notifies-align-items, flex-end);
+  padding: var(--vuij-notifies-padding, var(--vuij-padding, 1rem));
+}
+
+.vuij-notify {
+  position: var(--vuij-notify-position, relative);
+  padding: var(--vuij-notify-padding, var(--vuij-padding, .5rem calc(.75rem + var(--vuij-close-size, 1rem)) .5rem .75rem));
+  color: var(--vuij-notify-color, currentColor);
+  background-color: var(--vuij-notify-background-color, var(--vuij-background-color-blur, transparent));
+  backdrop-filter: var(--vuij-notify-backdrop-filter, blur(2px));
+  border-width: var(--vuij-notify-border-width, var(--vuij-card-border-width));
+  border-style: var(--vuij-notify-border-style, var(--vuij-card-border-style));
+  border-color: var(--vuij-notify-border-color, var(--vuij-card-border-color));
+  border-radius: var(--vuij-notify-border-radius, var(--vuij-card-border-radius));
+}
+
+.vuij-notify__body {
+  margin: var(--vuij-notify-body-margin, 0);
+}
+
+/* Angle */
+.vuij-angle {
+  display: var(--vuij-angle-display, inline-flex);
+  justify-content: var(--vuij-angle-justify-content, center);
+  align-items: var(--vuij-angle-align-items, center);
+  width: var(--vuij-angle-width, calc(var(--vuij-angle-size, 1em) * 2));
+  aspect-ratio: var(--vuij-angle-aspect-ratio, 1);
+  color: var(--vuij-angle-color, currentColor);
+  background-color: var(--vuij-angle-background-color, var(--vuij-background-color, Canvas));
+  border-width: var(--vuij-angle-border-width, 0);
+  border-style: var(--vuij-angle-border-style, none);
+  border-color: var(--vuij-angle-border-color, transparent);
+  border-radius: var(--vuij-angle-border-radius, 50%);
+  cursor: var(--vuij-angle-cursor, pointer);
+  opacity: var(--vuij-angle-opacity, 0.5);
+}
+
+.vuij-angle:hover {
+  --vuij-angle-opacity: var(--vuij-angle-opacity-hover, 1);
+}
+
+/* Calendar */
+.vuij-calendar {
+  --vuij-angle-color: var(--vuij-calendar-angle-color);
+  --vuij-angle-background-color: var(--vuij-calendar-angle-background-color);
+  --vuij-angle-width: var(--vuij-calendar-angle-width);
+  --vuij-angle-size: var(--vuij-calendar-angle-size);
+
+  user-select: none;
+  outline: none;
+
+  display: var(--vuij-calendar-display, flex);
+  gap: var(--vuij-calendar-gap, 1rem);
+  flex-wrap: var(--vuij-calendar-flex-wrap, wrap);
+  flex-direction: var(--vuij-calendar-flex-direction, row);
+  justify-content: var(--vuij-calendar-justify-content, space-between);
+  align-items: var(--vuij-calendar-align-items, flex-start);
+  background-color: var(--vuij-calendar-background-color, var(--vuij-background-color, Canvas));
+}
+
+.vuij-calendar__main {
+  min-width: 15em;
+  flex: 1;
+}
+
+.vuij-calendar__header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 2%;
+}
+
+.vuij-calendar__header-inform {
+  display: flex;
+  gap: 0.25em;
+}
+
+.vuij-calendar__grid {
+  display: grid;
+  grid-template-columns: repeat(var(--vuij-calendar-grid-cols, 3), 1fr);
+  gap: 1px;
+  /* background-color: var(--vuij-calendar-grid-background-color, ButtonFace); */
+  background-color: var(--vuij-calendar-grid-background-color, transparent);
+}
+
+.vuij-calendar__grid_wn {
+  --vuij-calendar-grid-cols: 7;
+  margin-bottom: 2%;
+  /* background-color: Canvas; */
+}
+
+.vuij-calendar__grid_day {
+  --vuij-calendar-grid-cols: 7;
+}
+
+.vuij-calendar__cell {
+  display: flex;
+  /* background-color: var(--vuij-calendar-cell-background-color, Canvas); */
+  background-color: var(--vuij-calendar-cell-background-color, transparent);
+  place-content: center;
+  place-items: center;
+  overflow: hidden;
+  flex: 1;
+}
+.vuij-calendar__cell_mn {
+  min-width: fit-content;
+}
+
+.vuij-calendar__cell_day {
+  aspect-ratio: 1;
+}
+
+.vuij-calendar__cell_month,
+.vuij-calendar__cell_year {
+  aspect-ratio: 1.5;
+}
+
+.vuij-calendar__cell_active {
+  font-weight: var(--vuij-calendar-cell-font-weight-active, bold);
+  background-color: var(--vuij-calendar-cell-active-background-color, transparent);
+}
+
+.vuij-calendar__cell_out {
+  opacity: var(--vuij-calendar-cell-opacity-out, 0.5);
+  background-color: var(--vuij-calendar-cell-out-background-color, transparent);
+}
+
+.vuij-calendar__day {
+  display: flex;
+  place-content: center;
+  place-items: center;
+  background-color: var(--vuij-calendar-day-background-color, transparent);
+  width: 100%;
+  aspect-ratio: 1;
+}
+
+.vuij-listitem[aria-current="true"] .vuij-calendar__cell {
+  background-color: var(--vuij-background-color-active);
+}
+
+/* Tags */
+.vuij-tags {
+  position: var(--vuij-tags-position, relative);
+  display: var(--vuij-tags-display, inline-flex);
+  flex-direction: var(--vuij-tags-flex-direction, row);
+  flex-wrap: var(--vuij-tags-flex-wrap, wrap);
+  justify-content: var(--vuij-tags-justify-content, flex-start);
+  align-items: var(--vuij-tags-align-items, center);
+  gap: var(--vuij-tags-gap, 0.2rem);
+  width: var(--vuij-tags-width, fit-content);
+}
+
+.vuij-tag {
+  position: var(--vuij-tag-position, relative);
+  display: var(--vuij-tag-display, inline-flex);
+  flex-direction: var(--vuij-tag-flex-direction, row);
+  flex-wrap: var(--vuij-tag-flex-wrap, nowrap);
+  justify-content: var(--vuij-tag-justify-content, space-between);
+  align-items: var(--vuij-tag-align-items, center);
+  gap: var(--vuij-tag-gap, 0.3rem);
+  font-size: var(--vuij-tag-font-size, 0.8rem);
+  line-height: var(--vuij-tag-line-height, 1em);
+  border-width: var(--vuij-tag-border-width, 1px);
+  border-style: var(--vuij-tag-border-style, solid);
+  border-color: var(--vuij-tag-border-color, var(--vuij-formel-border-color, GrayText));
+  border-radius: var(--vuij-tag-border-radius, var(--vuij-border-radius-small, 0));
+  background-color: var(--vuij-tag-background-color, Canvas);
+  padding: var(--vuij-tag-padding, .1rem .3rem .1rem);
+}
+
+.vuij-tag:has(.vuij-tag__close) {
+  padding-right: var(--vuij-tag-has-close-padding-right, .15rem);
+}
+
+.vuij-tag__close {
+  --vuij-close-position: var(--vuij-tag-close-position, relative);
+}
+
+/* Card */
+.vuij-card {
+  padding: var(--vuij-card-padding, var(--vuij-padding, .5rem));
+  border-width: var(--vuij-card-border-width, 1px);
+  border-style: var(--vuij-card-border-style, solid);
+  border-color: var(--vuij-card-border-color, var(--vuij-formel-border-color));
+  border-radius: var(--vuij-card-border-radius, var(--vuij-border-radius-medium, var(--vuij-border-radius, 0)));
+  background-color: var(--vuij-card-background-color, var(--vuij-background-color, Canvas));
+}
+.vuij-card_mystic {
+  min-width: var(--vuij-card-mystic-min-width, 220px);
+  min-height: var(--vuij-card-mystic-min-height, 1em);
+  --vuij-card-padding: var(--vuij-card-mystic-padding, 1px);
+  --vuij-card-border-width: var(--vuij-card-mystic-border-width, 1px);
+  --vuij-card-border-style: var(--vuij-card-mystic-border-style, solid);
+  --vuij-card-border-color: var(--vuij-card-mystic-border-color, var(--vuij-formel-border-color));
+  --vuij-card-border-radius: var(--vuij-card-mystic-border-radius, var(--vuij-formel-border-radius, var(--vuij-border-radius-small, 0)));
+  --vuij-card-background-color: var(--vuij-card-mystic-background-color, var(--vuij-background-color, Canvas));
+}
+.vuij-mystic {
+  box-shadow: var(--vuij-mystic-box-shadow, 0 0 24px Field);
+}
+
+/* Dialog */
+.vuij-dialog {
+  border: var(--vuij-dialog-border, none);
+  padding: var(--vuij-dialog-padding, 1em);
+  background-color: var(--vuij-dialog-background-color, transparent);
+  z-index: var(--vuij-dialog-z-index, 9);
+  min-width: var(--vuij-dialog-min-width, 280px);
+  width: var(--vuij-dialog-width, 100%);
+  max-width: var(--vuij-dialog-max-width, 100%);
+  max-width: var(--vuij-dialog-max-width, 800px);
+  min-height: var(--vuij-dialog-min-height, 2em);
+  max-height: var(--vuij-dialog-max-height, 100%);
+}
+
+.vuij-dialog__card {
+  position: var(--vuij-dialog-card-position, relative);
+  padding: var(--vuij-dialog-card-padding, var(--vuij-card-padding, .5rem));
+  border-width: var(--vuij-dialog-card-border-width, var(--vuij-card-border-width, 1px));
+  border-style: var(--vuij-dialog-card-border-style, var(--vuij-card-border-style, solid));
+  border-color: var(--vuij-dialog-card-border-color, var(--vuij-card-border-color, GrayText));
+  border-radius: var(--vuij-dialog-card-border-radius, var(--vuij-border-radius-medium, var(--vuij-border-radius, 0)));
+  background-color: var(--vuij-dialog-card-background-color, var(--vuij-card-background-color, Canvas));
+
+  box-shadow: var(--vuij-dialog-card-box-shadow, 0 4px 12px rgba(0, 0, 0, 0.15));
+  max-width: var(--vuij-dialog-card-max-width, 100%);
+  max-height: var(--vuij-dialog-card-max-height, calc(100vh - 2 * var(--vuij-dialog-padding, 1em)));
+  height: var(--vuij-dialog-card-height, 100%);
+  display: var(--vuij-dialog-card-display, flex);
+  flex-direction: var(--vuij-dialog-card-flex-direction, column);
+}
+
+.vuij-dialog__header {
+  border-bottom: var(--vuij-dialog-header-border-bottom, 1px solid rgba(128, 128, 128, 0.5));
+  padding: var(--vuij-dialog-header-padding, 1rem 1.5rem);
+  display: flex;
+  gap: 0.5rem;
+  justify-content: space-between;
+}
+
+.vuij-dialog__title {
+  margin: var(--vuij-dialog-header-title, 0);
+}
+
+.vuij-dialog__footer {
+  border-top: var(--vuij-dialog-footer-border-top, 1px solid rgba(128, 128, 128, 0.5));
+  padding: var(--vuij-dialog-footer-padding, 1rem 1.5rem);
+  /* margin-top: 1.5rem; */
+  display: flex;
+  gap: 0.5rem;
+  justify-content: space-between;
+}
+
+.vuij-dialog__content {
+  border: var(--vuij-dialog-content-border, none);
+  background-color: var(--vuij-dialog-content-background-color, canvas);
+  color: var(--vuij-dialog-content-color, text);
+  padding: var(--vuij-dialog-content-padding, 1rem 1.5rem);
+  border-radius: var(--vuij-dialog-content-border-radius, 0.5rem);
+  border: var(--vuij-dialog-content-border, none);
+  overflow: var(--vuij-dialog-content-overflow, auto);
+  position: var(--vuij-dialog-content-position, relative);
+}
+
+/* dialog::backdrop {
+    background: rgba(0, 0, 0, 0.5);
+} */
+
+.vuij-dialog__footer {
+  margin-top: var(--vuij-dialog-footer-margin-top, 1.5rem);
+  display: var(--vuij-dialog-footer-display, flex);
+  gap: var(--vuij-dialog-footer-gap, 0.5rem);
+  justify-content: var(--vuij-dialog-footer-justify-content, flex-end);
+}
+
+/* Table */
+
+.vuij-table {
+  width: var(--vuij-table-width, 100%);
+  border-collapse: var(--vuij-table-border-collapse, collapse);
+}
+
+.vuij-table th {
+  padding: var(--vuij-table-cell-padding, var(--vuij-table-th-padding, .5em));
+  border-bottom-width: var(--vuij-table-cell-border-bottom-width, var(--vuij-table-th-border-bottom-width, 1px));
+  border-bottom-style: var(--vuij-table-cell-border-bottom-style, var(--vuij-table-th-border-bottom-style, solid));
+  border-bottom-color: var(--vuij-table-cell-border-bottom-color, var(--vuij-table-th-border-bottom-color, var(--vuij-formel-border-color, GrayText)));
+  text-align: var(--vuij-table-cell-text-align, var(--vuij-table-th-text-align, left));
+  color: var(--vuij-table-cell-color, var(--vuij-table-th-color, currentColor));
+  font-size: var(--vuij-table-cell-font-size, var(--vuij-table-th-font-size, normal));
+  font-weight: var(--vuij-table-cell-font-weight, var(--vuij-table-th-font-weight, bold));
+  line-height: var(--vuij-table-cell-line-height, var(--vuij-table-th-line-height, inherit));
+}
+
+.vuij-table td {
+  padding: var(--vuij-table-cell-padding, var(--vuij-table-td-padding, .5em));
+  border-bottom-width: var(--vuij-table-cell-border-bottom-width, var(--vuij-table-td-border-bottom-width, 1px));
+  border-bottom-style: var(--vuij-table-cell-border-bottom-style, var(--vuij-table-td-border-bottom-style, solid));
+  border-bottom-color: var(--vuij-table-cell-border-bottom-color, var(--vuij-table-td-border-bottom-color, var(--vuij-formel-border-color, GrayText)));
+  text-align: var(--vuij-table-cell-text-align, var(--vuij-table-td-text-align, left));
+  color: var(--vuij-table-cell-color, var(--vuij-table-td-color, currentColor));
+  font-size: var(--vuij-table-cell-font-size, var(--vuij-table-td-font-size, normal));
+  font-weight: var(--vuij-table-cell-font-weight, var(--vuij-table-td-font-weight, normal));
+  line-height: var(--vuij-table-cell-line-height, var(--vuij-table-td-line-height, inherit));
+}
+
+.vuij-table__row:hover {
+  font-weight: var(--vuij-table-row-background-color-hover, var(--vuij-background-color-hover, ButtonFace));
+}
+
+/* Pagination */
+.vuij-pagination {
+  display: var(--vuij-pagination-display, flex);
+  align-items: var(--vuij-pagination-align-items, center);
+  gap: var(--vuij-pagination-gap, .5rem);
+}
+
+.vuij-pagination .vuij-button {
+  --vuij-button-font-size: var(--vuij-pagination-button-font-size, 1rem);
+  --vuij-button-line-height: var(--vuij-pagination-button-line-height, inherit);
+  --vuij-button-color: var(--vuij-pagination-button-color);
+  --vuij-button-background-color: var(--vuij-pagination-button-background-color);
+  --vuij-button-border-width: var(--vuij-pagination-button-border-width);
+  --vuij-button-border-style: var(--vuij-pagination-button-border-style);
+  --vuij-button-border-color: var(--vuij-pagination-button-border-color);
+  --vuij-button-border-radius: var(--vuij-pagination-button-border-radius);
+  --vuij-button-align-self: var(--vuij-pagination-button-align-self, center);
+  --vuij-button-padding: var(--vuij-pagination-button-padding, 0.25rem 0.5rem);
+}
+
+.vuij-pagination .vuij-button[aria-current="page"] {
+  --vuij-button-color: var(--vuij-pagination-button-color-accent, Canvas);
+  --vuij-button-background-color: var(--vuij-pagination-button-background-color-accent, var(--vuij-background-color-accent, VisitedText));
+  --vuij-button-border-width: var(--vuij-pagination-button-border-width-accent);
+  --vuij-button-border-style: var(--vuij-pagination-button-border-style-accent);
+  --vuij-button-border-color: var(--vuij-pagination-button-border-color-accent, VisitedText);
+}
+
+.vuij-pagination__break {
+  padding: var(--vuij-pagination-break-padding, 0 0.5rem);
+}
+
+/* Loading */
+.vuij-loading {
+  color: var(--vuij-loading-color, currentColor);
+  width: var(--vuij-loading-size, 1em);
+}
+
+/* Icons */
+.vuij-icon:has(svg)::before {
+  content: none;
+}
+
+.vuij-icon svg {
+  max-width: 1em;
+  max-height: 1em;
+}
+
+.vuij-icon
+/* ,
+[class^=icon_],
+[class*=" icon_"]  */
+{
+  --icon-size: 1em;
+  display: inline-flex;
+  align-items: center;
+  justify-content: flex-start;
+  font-style: normal;
+}
+
+.vuij-icon:before
+/* ,
+[class^=icon_]:before,
+[class*=" icon_"]:before  */
+{
+  content: attr(data-icon);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: var(--icon-size, 1em);
+  height: var(--icon-size, 1em);
+  font-size: var(--icon-size, 1em);
+  font-family: 'emoji', monospace;
+  font-style: normal;
+  font-weight: normal;
+  font-variant: normal;
+  text-transform: none;
+  line-height: normal;
+  -webkit-font-smoothing: antialiased;
+}
+
+
+.vuij-iconed {
+  display: inline-flex;
+  position: relative;
+  /* height: auto; */
+  /* width: fit-content; */
+  width: 100%;
+}
+
+.vuij-iconed:has(.vuij-icon) {
+  width: fit-content;
+  max-width: fit-content;/*TODO*/
+}
+
+.vuij-iconed_input .vuij-icon {
+  --input-height: calc(100% - 2 * var(--vuij-input-border-width, var(--vuij-formel-border-width)));
+  --icon-size: calc(0.8 * var(--input-height));
+  position: absolute;
+  /* height: var(--input-height); */
+  height: calc(var(--input-height) - 1px);
+  top: var(--vuij-input-border-width, var(--vuij-formel-border-width));
+  /* width: 2em; */
+  aspect-ratio: 1;
+  /* z-index: 2; */
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  /* line-height: normal; */
+  /* background: transparent; */
+  /* background: yellow; */
+  /* box-sizing: border-box;
+	box-sizing: content-box; */
+  /* border: 1px solid transparent; */
+  border: none;
+}
+
+.vuij-iconed_right .vuij-icon {
+  right: .4em;
+}
+
+.vuij-iconed_right .vuij-icon.vuij-loading {
+  right: .8em;
+}
+
+.vuij-iconed_input .vuij-icon+.vuij-input {
+  text-indent: 1.6em;
+}
+
+.vuij-iconed_right.vuij-iconed_input .vuij-icon+.vuij-input {
+  text-indent: 0;
+  padding-inline-end: 2.8em;
+}

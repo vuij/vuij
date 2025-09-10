@@ -1,0 +1,213 @@
+
+.vuij-theme_evergreen {
+    --vuij-color-brand: darkgreen;
+    --vuij-color-accent: darkgreen;
+
+    --vuij-color-primary: darkblue;
+    --vuij-color-secondary: #444;
+    --vuij-color-info: #444;
+    --vuij-color-success: darkgreen;
+    --vuij-color-warning: orangered;
+    --vuij-color-danger: red;
+    --vuij-color-invert: white;
+    --vuij-color-light: #ccc;
+
+    --vuij-background-primary: deepskyblue;
+    --vuij-background-secondary: #ddd;
+    --vuij-background-success: lightgreen;
+    --vuij-background-warning: goldenrod;
+    --vuij-background-danger: tomato;
+
+    /* --vuij-border-color: rgba(144, 238, 144, 0.5); */
+    --vuij-border-color: rgba(77, 135, 155, 0.581);
+    --vuij-background-color: white;
+    --vuij-border-radius: 8px;
+
+    --vuij-h1-font-size: 1.6rem;
+    --vuij-h2-font-size: 1.4rem;
+    --vuij-link-color: var(--vuij-color-primary);
+
+    --vuij-card-border-radius: 8px;
+
+    --vuij-formel-border-color: var(--vuij-border-color);
+    --vuij-formel-border-radius: 4px;
+    --vuij-formel-outline-color: none;
+    --vuij-formel-outline-width: 0;
+    --vuij-formel-padding: 8px 16px;
+
+    --vuij-button-border-color: var(--vuij-border-color);
+    /* --vuij-button-background-color: var(--vuij-background-primary); */
+    --vuij-button-border-radius: 4px;
+    /* --vuij-button-border-width: 0; */
+    --vuij-button-padding: 8px 16px;
+
+    --vuij-ctrl-input-label-color: var(--vuij-color-info);
+
+    --vuij-input-border-color: var(--vuij-formel-border-color);
+    --vuij-input-border-radius: var(--vuij-formel-border-radius);
+    --vuij-input-outline-color: var(--vuij-formel-outline-color);
+    --vuij-input-outline-width: var(--vuij-formel-outline-width);
+    --vuij-input-padding: var(--vuij-formel-padding);
+
+    --vuij-table-th-color: var(--vuij-color-info);
+    --vuij-table-th-border-bottom-color: var(--vuij-background-secondary);
+    --vuij-table-th-font-size: var(--vuij-font-size-smaller, smaller);
+    --vuij-table-th-font-weight: normal;
+    --vuij-table-th-padding: 0.75em 0.5em 0.75em 0.5em;
+
+    --vuij-table-td-padding: 0.5em;
+
+    --vuij-pagination-button-padding: 0.25em 0.5em;
+    --vuij-pagination-button-line-height: 1;
+    --vuij-pagination-button-border-width: 0px;
+    --vuij-pagination-button-border-radius: 25%;
+    --vuij-pagination-button-border-width-accent: 0px;
+    --vuij-pagination-button-background-color-accent: var(--vuij-color-success);
+
+    --vuij-fieldset-options-max-width: 320px;
+    --vuij-fieldset-options-max-height: 320px;
+
+    --vuij-listbox-gap: 2px;
+    /* width: 99%; */
+}
+
+.vuij-button_primary {
+    /* --vuij-button-color: var(--vuij-color-invert); */
+    --vuij-button-border-color: var(--vuij-background-primary);
+    --vuij-button-background-color: var(--vuij-background-primary);
+}
+/* :not(_outlined) */
+
+.vuij-button_secondary {
+    --vuij-button-border-color: var(--vuij-background-secondary);
+    --vuij-button-background-color: var(--vuij-background-secondary);
+}
+.vuij-button_success {
+    --vuij-button-border-color: var(--vuij-background-success);
+    --vuij-button-background-color: var(--vuij-background-success);
+}
+.vuij-button_danger {
+    --vuij-button-color: var(--vuij-color-invert);
+    --vuij-button-border-color: var(--vuij-background-danger);
+    --vuij-button-background-color: var(--vuij-background-danger);
+}
+.vuij-button_warning {
+    --vuij-button-border-color: var(--vuij-background-warning);
+    --vuij-button-background-color: var(--vuij-background-warning);
+}
+/* .vuij-button:has(.vuij-button__label:empty) {
+    gap: 0;
+} */
+ 
+.vuij-button:has(.vuij-button__icon):has(.vuij-button__label:not(:empty)) {
+    --vuij-button-gap: 0.5em;
+}
+
+.vuij-icon {
+  --icon-size: 0.8em;
+}
+
+.vuij-listbox>[role="option"]:not(:first-child)>.vuij-button {
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
+    margin-left: -1px;
+    border-left: 0;
+}
+
+.vuij-listbox>[role="option"]:not(:last-child)>.vuij-button {
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
+}
+
+
+.vuij-calendar {
+    /* --vuij-calendar-angle-background-color: var(--vuij-background-secondary); */
+    --vuij-calendar-angle-color: var(--vuij-color);
+    --vuij-calendar-angle-width: 2em;
+    --vuij-calendar-angle-size: 1em;
+}
+@media (prefers-color-scheme: dark) {
+    .vuij-calendar {
+        --vuij-calendar-angle-background-color: var(--vuij-color);
+        --vuij-calendar-angle-color: var(--vuij-background-secondary);
+    }
+}
+
+
+/* Animation examples
+dialog {
+    animation: fade-out 0.2s ease-out;
+}
+dialog:open {
+    animation: fade-in 0.2s ease-out;
+}
+dialog:open::backdrop {
+    animation: backdrop-fade-in 0.2s ease-out forwards;
+}
+@keyframes fade-in {
+    0% {
+        opacity: 0;
+        transform: scaleY(0.9);
+        display: none;
+    }
+    100% {
+        opacity: 1;
+        transform: scaleY(1);
+        display: block;
+    }
+}
+@keyframes fade-out {
+    0% {
+        opacity: 1;
+        transform: scaleY(1);
+        display: block;
+    }
+    100% {
+        opacity: 0;
+        transform: scaleY(0.9);
+        display: none;
+    }
+}
+@keyframes backdrop-fade-in {
+    0% {
+        background-color: rgb(0 0 0 / 0%);
+    }
+    100% {
+        background-color: rgb(0 0 0 / 25%);
+    }
+}
+*/
+
+/* .vuij-group > *:not(.vuij-input, :has(.vuij-input), .vuij-label, :has(.vuij-check)) {
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  display: inline-flex;
+	align-items: center;
+	justify-content: space-between;
+	padding: 8px;
+} */
+
+.vuij-group > *:not(:first-child),
+.vuij-group > *:has(.vuij-input):not(:first-child) .vuij-input {
+  border-top-left-radius: 0;
+  border-bottom-left-radius: 0;
+  margin-left: -1px;
+}
+.vuij-group > *:not(:last-child),
+.vuij-group > *:has(.vuij-input):not(:last-child) .vuij-input  {
+  border-top-right-radius: 0;
+  border-bottom-right-radius: 0;
+}
+
+.vuij-iconed_right:has([type="search"]) .vuij-input {
+	padding-right: 2em;
+	max-width: 164px;
+}
+.vuij-input[type="number"] {
+	max-width: 130px;
+}
+
+.vuij-button__icon[data-icon]::before {
+	margin-top: -2px;
+    margin-bottom: 2px;
+}
