@@ -6,7 +6,7 @@
         "test": "echo 'vuij'",
         "u": "rm -rf node_modules && npm i",
         "prepublishOnly": "git add . && git commit -m 'version %s' && npm version patch -m 'Bump version to %s'",
-        "postpublish": "git add . && git commit -m 'version %s' && git push origin main --tags"
+        "postpublish": "git push origin main --tags"
     },
     "repository": {
         "type": "git",
