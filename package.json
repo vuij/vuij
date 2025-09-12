@@ -5,7 +5,7 @@
     "scripts": {
         "test": "echo 'vuij'",
         "u": "rm -rf node_modules && npm i",
-        "prepublishOnly": "git add . && git commit -m 'version %s' && npm version patch -m 'Bump version to %s'",
+        "prepublishOnly": "npm version patch -m 'Bump version to %s' && git add . && git commit -m 'version %s'",
         "postpublish": "git push origin main --tags"
     },
     "repository": {
