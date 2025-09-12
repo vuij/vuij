@@ -59,7 +59,7 @@ const handleDialogClose = () => {
 
 // Open dialog
 const open = () => {
-    console.log('try open', dialogRef.value);
+    // console.log('try open', dialogRef.value);
 
     if (!dialogRef.value) return
     isOpen.value = true;

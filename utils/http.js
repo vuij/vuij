@@ -245,7 +245,7 @@ class Http {
     correctHeaders() {
         if(!this.params.STRICT) {
             if(!!this.params.apiToken) { // && typeof 'string'
-                if(this.params.jsonRequest===undefined) console.warn('this.params.jsonRequest = true');//this.params.jsonRequest = true;
+                // if(this.params.jsonRequest===undefined) console.warn('this.params.jsonRequest = true ?');//this.params.jsonRequest = true;
                 if(this.params.jsonResponse===undefined) this.params.jsonResponse = true;
 
                 this.options.headers.set('authorization', 'Bearer ' + this.params.apiToken);
@@ -321,7 +321,7 @@ class Http {
         else if(this.options.headers.get('content-type')==='application/json') this.params.jsonRequest = true;
         */
 
-        console.log('setCorrectBody BEFORE', { _body, params: this.params, options: this.options});
+        // console.log('setCorrectBody BEFORE', { _body, params: this.params, options: this.options});
 
         if(!_body) _body = undefined;
         else {
@@ -346,7 +346,8 @@ class Http {
                         if(_body instanceof HTMLFormElement) _body = new FormData(_body);
                         if(_body instanceof FormData) _body = Http.fd2obj(_body);
                         _body = JSON.stringify(_body);
-                        alert('wtf?');
+                        // alert('GET/HEAD body?');
+                        console.warn('GET/HEAD body');
                     }
 
                     if(!this.params.jsonRequest && !(_body instanceof FormData)) {

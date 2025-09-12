@@ -19,8 +19,8 @@
                         {{ col.title }}
                     </slot>
                     <!-- slot! -->
-                    <span v-if="col.sortable" class="vuij-table__sort-icon">
-                        {{ col.sortOrder === 'asc' ? '↑' : '↓' }}
+                    <span v-if="col.sortable" class="vuij-table__sorter" :class="{'vuij-table__sorter_by': col.key === sortKey, [`vuij-table__sorter_order_${col.sortOrder}`]: col.key === sortKey}">
+                        {{ col.key === sortKey ? (col.sortOrder === 'asc' ? '↑' : '↓') : '↕' }}
                     </span>
                 </th>
             </tr>
@@ -91,6 +91,7 @@ const props = withDefaults(defineProps<{
     }>
     tree?: boolean
     selectable?: boolean // selected array?
+    sortKey?: string
     loadChildren?: (row: any) => Promise<any[]>
     rowClass?: (row: any) => string
 }>(),{

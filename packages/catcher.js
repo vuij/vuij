@@ -6,7 +6,7 @@ const catcher = {
 
         if (!vm.$notify) app.use(notify);
 
-        vm.$catcher = (e) => vm.$notify({ body: e.message || "🐞", level: 'danger', delay: 5 });
+        vm.$catcher = (e) => vm.$notify({ body: e.message || "🐞", data: {level: 'danger', delay: 5000} });
     },
 };
 

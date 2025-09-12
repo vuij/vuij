@@ -4,7 +4,7 @@
             <slot :is-open="isOpen" />
         </div>
 
-        <VuijMystic :el="triggerRef" :trigger="trigger" :opened="isOpen" :hasArrow="hasArrow" :minZIndex="minZIndex" :offset="offset">
+        <VuijMystic :el="triggerRef" :placement="placement" :trigger="trigger" :opened="isOpen" :hasArrow="hasArrow" :minZIndex="minZIndex" :offset="offset">
             <div class="vuij-card vuij-card_mystic vuij-card_tooltip" @mouseenter="handleContentHover(true)" @mouseleave="handleContentHover(false)">
                 <slot name="content" :close="close" />
             </div>

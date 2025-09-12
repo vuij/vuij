@@ -22,10 +22,10 @@
         <template #stretch>
             <template v-if="name">
                 <template v-if="localValue">
-                    <template v-if="multiple">
-                        <input v-for="value in localValue" :key="'hidden_value_'+value" type="hidden" :name="name" :value="value"/>
+                    <template v-if="!!multiple">
+                        <input v-for="(value, index) in localValue" :key="'hidden_value_'+value" :name="multipleName(index, value)" type="hidden" :value="value" data-m/>
                     </template>
-                    <input v-else type="hidden" :name="name" :value="localValue"/>
+                    <input v-else type="hidden" :name="name" :value="localValue" data-n/>
                 </template>
                 <input v-else type="hidden" :name="name"/>
             </template>
@@ -48,11 +48,12 @@
                         </slot>
                         <VuijOptions 
                             v-else 
-                            v-bind="$props"
                             v-model="localValue" 
+                            v-bind="$props" 
+                            :multiple="!!multiple" 
                             :options="localOptions" 
                             :autofocus="autofocus" 
-                            @update:model-value="v => isOpen = !v || multiple"
+                            @update:model-value="v => isOpen = !v || !!multiple"
                             hidechecks
                         >
                             <!-- slot nooption -->
@@ -121,7 +122,10 @@ const props = defineProps({
         type: String,
         default: 'No Data'
     },
-    multiple: Boolean,
+    multiple: {
+        type: [Boolean, String],
+        default: false
+    },
     // disabled: Boolean,
     // filterable: Boolean,
     filterable: {
@@ -156,7 +160,7 @@ const selectedOptions = computed<OptionItem[]|any[]>(() => initedOptions.value.f
 const selectedLabel = computed(() => selectedOptions.value?.map(o => o.label)?.join(', '));
 
 const handleTagClose = (tag: OptionItem) => {
-    if(props.multiple) {
+    if(!!props.multiple) {
         localValue.value = localValue.value.filter((v: string|number) => String(v)!==String(tag.value));
     }
     else localValue.value = undefined;
@@ -168,6 +172,17 @@ const tryInputFocus = () => {
 
 const handleTagsClickSelf = (/*e: PointerEvent*/) => {
     tryInputFocus();
+}
+
+const multipleName = (index, value) => {
+    let name = props.name;
+    // console.warn(props.multiple);
+    if(name && !!props.multiple && (typeof props.multiple === 'string')) { // ? // && name.indexOf('[')===-1 
+        // name = name.split('[').shift();
+        const key = (props.multiple === 'index' ? index : (props.multiple === 'value' ? value : ''));
+        name = name + `[${key ?? ''}]`;
+    }
+    return name;
 }
 
 const setLocalValues = async (options?: Array<any>) => {
@@ -254,7 +269,7 @@ const normalizeOptions = () => {
 }
 // Нормализация modelValue
 const normalizeModelValue = () => {
-    localValue.value = (props.multiple) 
+    localValue.value = (!!props.multiple) 
         ? (Array.isArray(props.modelValue)
                 ? props.modelValue
                 : (props.modelValue !== undefined && props.modelValue !== null

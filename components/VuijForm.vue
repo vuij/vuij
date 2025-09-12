@@ -115,6 +115,8 @@ export default {
         },
 
 		formSubmit(e) {
+			console.log('>>>> formSubmit?');
+
 			e.preventDefault();//if?
 
 
