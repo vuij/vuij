@@ -4,7 +4,7 @@
             <slot :is-open="isOpen" />
         </div>
 
-        <VuijMystic :el="triggerRef" :placement="placement" :trigger="trigger" :opened="isOpen" :hasArrow="hasArrow" :minZIndex="minZIndex" :offset="offset">
+        <VuijMystic v-if="!disabled" :el="triggerRef" :placement="placement" :trigger="trigger" :opened="isOpen" :hasArrow="hasArrow" :minZIndex="minZIndex" :offset="offset">
             <div class="vuij-card vuij-card_mystic vuij-card_tooltip" @mouseenter="handleContentHover(true)" @mouseleave="handleContentHover(false)">
                 <slot name="content" :close="close" />
             </div>
@@ -26,6 +26,7 @@ const props = withDefaults(defineProps<{
     autoPosition?: boolean
     hasArrow?: boolean
     opened?: boolean
+    disabled?: boolean
     //animations
     minZIndex?: number
 }>(), {
@@ -35,6 +36,7 @@ const props = withDefaults(defineProps<{
     autoPosition: true,
     hasArrow: !true,
     opened: !true,
+    disabled: !true,
     minZIndex: 1
 })
 
