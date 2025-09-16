@@ -156,8 +156,16 @@ const searchValue = ref('');
 const loading = ref(false);
 const isOpen = ref(false);
 
-const selectedOptions = computed<OptionItem[]|any[]>(() => initedOptions.value.filter((o: any) => [localValue.value].flatMap(v=>v).includes(o?.[props.valueKey]))); //o.value
-const selectedLabel = computed(() => selectedOptions.value?.map(o => o.label)?.join(', '));
+const selectedOptions = computed<OptionItem[]|any[]>(() => {
+    const values = [localValue.value].flatMap(v=>v).map(v=>String(v)),
+        options = initedOptions.value,
+        selected = options.filter((o: any) => values.includes(String(o?.[props.valueKey])));
+        
+        // if(props.name === 'responsible_user_id') console.warn(props.name, {values, options, selected});
+        
+    return selected;
+});
+const selectedLabel = computed(() => selectedOptions.value?.map(o => o?.[props.labelKey])?.filter(l => l!==undefined)?.join(', '));
 
 const handleTagClose = (tag: OptionItem) => {
     if(!!props.multiple) {
@@ -185,7 +193,7 @@ const multipleName = (index, value) => {
     return name;
 }
 
-const setLocalValues = async (options?: Array<any>) => {
+const setLocalValues = async () => {
     const remoteSearch = typeof(props.remoteSearch) === 'function' ? props.remoteSearch : null,
         isAsync = remoteSearch && remoteSearch.constructor.name === 'AsyncFunction';
 
@@ -194,22 +202,22 @@ const setLocalValues = async (options?: Array<any>) => {
         localOptions.value = [];
 
         // надо дебонсить и отменять fetch? или в родителе?
-        let fetchedOptions = isAsync ? await remoteSearch(searchValue.value) : remoteSearch(searchValue.value); //,options) // normalize? // .map(item => normalizer(item, props.labelKey, props.valueKey));
+        let fetchedOptions = isAsync 
+                ? await remoteSearch(searchValue.value) 
+                : remoteSearch(searchValue.value);
  
-        const firstInitOptions = Array.isArray(options) && options.length ? options : null;
-        if(firstInitOptions) {
-            fetchedOptions = fetchedOptions.concat(firstInitOptions); //TODO unique
-            // console.log({fetchedOptions}, {firstInitOptions});
-            //
+        // if(initedOptions.value?.length) {
+        //     fetchedOptions = fetchedOptions.filter(o => !initedOptions.value.find(_o => _o[props.valueKey]===o[props.valueKey])).concat(initedOptions.value);
+        // }
+        if(props.options?.length) {
+            fetchedOptions = fetchedOptions.filter(o => !props.options.find(_o => _o[props.valueKey]===o[props.valueKey])).concat(props.options);
         }
 
         localOptions.value = fetchedOptions ?? [];
         initedOptions.value = fetchedOptions ?? [];
 
-        if(firstInitOptions && localValue.value) {
-            // console.warn({firstInitOptions}, localValue.value);
-            //
-            searchValue.value = selectedLabel.value;
+        if(localValue.value) {  // && selectedLabel.value // && options?.length 
+            searchValue.value = selectedLabel.value ?? '';
         }
 
         loading.value = false;
@@ -227,16 +235,12 @@ const setLocalValues = async (options?: Array<any>) => {
 const emit = defineEmits(['update:modelValue', 'input', 'focusin'])
 
 const handleInput = async (e: InputEvent) => {
-    // console.log('Select:handleInput', (e.target as HTMLInputElement)?.value);
-    //
     searchValue.value = (e.target as HTMLInputElement)?.value;
-    //
+
     if(searchValue.value !== selectedLabel.value) {
         localValue.value = null;
-        /////
     }
     
-    //
     emit('input', e);
     await setLocalValues();
 }
@@ -260,15 +264,17 @@ const initedOptions = ref<OptionItem[]>([]);
 
 // Нормализация опций
 const normalizer = (item: any, labelKey: string, valueKey: string|number) => (typeof item === 'object' && item !== null) // import utils
-    ? { ...item, label: item[labelKey]?.toString() || '', value: item[valueKey], foo: 'bar' } 
+    ? { ...item, label: item[labelKey]?.toString() || '', value: item[valueKey] } 
     : { label: String(item), value: item };
+
 const normalizeOptions = () => {
-    // console.log('normalizeOptions?', [...props.options]);
     initedOptions.value = (props.options ?? []).map(item => normalizer(item, props.labelKey, props.valueKey));
-    setLocalValues(initedOptions.value);
+    setLocalValues();
 }
 // Нормализация modelValue
 const normalizeModelValue = () => {
+    if(localValue.value === props.modelValue) return;
+    
     localValue.value = (!!props.multiple) 
         ? (Array.isArray(props.modelValue)
                 ? props.modelValue
@@ -287,7 +293,7 @@ watch(() => props.multiple, () => {
     emit('update:modelValue', props.multiple ? [] : null)
 })
 watch(localValue, () => {
-    // console.log('Select:watch:localValue', localValue.value, props.tagged, selectedLabel.value);
+    // console.log('Select:watch:localValue', [localValue.value].flatMap(v=>v).map(v=>String(v)));
     ///
     ///
     if(!props.tagged) searchValue.value = selectedLabel.value;
@@ -298,5 +304,5 @@ watch(localValue, () => {
     //     tryInputFocus();// это закрывает попап только клавишей, и курсор в конце
     // }, 88)
 
-}, { immediate: true })
+});//, { immediate: true });
 </script>

@@ -1,6 +1,6 @@
 {
     "name": "vuij",
-    "version": "2.0.7",
+    "version": "2.0.8",
     "author": "trunow",
     "scripts": {
         "test": "echo 'vuij'",

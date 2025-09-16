@@ -658,8 +658,9 @@ export class Datej extends Date {
             throw new Error(`Invalid day: ${day}`);
         }
         
-        const resultDate = new Date(year, month, day);
-        if (resultDate.getMonth() !== month || resultDate.getDate() !== day) {
+        const resultDate = new Date(new Date(new Date(new Date(year, month, day).setUTCDate(day))).setUTCHours(0));
+
+        if (resultDate.getMonth() !== month || resultDate.getUTCDate() !== day) {
             throw new Error('Invalid date');
         }
         

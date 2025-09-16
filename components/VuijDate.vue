@@ -82,20 +82,21 @@ const handleDown = (e: Event) => {
 //     return String(string).replace(/[^\d]/gi, '');
 // }
 
-function fromLocaleDateString(dateString: string) {
-    // return validDate(Datej.parseDateTime(dateString));
-    return validDate(Datej.parseDateTime(dateString));
+function fromLocaleDateString(dateString: string, locale) {
+    return validDate(Datej.parseDateTime(dateString, locale));
 }
 
 function validDate(date: Date | null) {
     return date instanceof Date && !isNaN(date.getTime()) ? date : null;
 }
 
-
 watch(localeDateString, (newLocaleDateString) => {
-    const newDate = newLocaleDateString ? fromLocaleDateString(newLocaleDateString) : null;
+    const newDate = newLocaleDateString 
+        ? fromLocaleDateString(newLocaleDateString, props.locale) 
+        : null;
 
     // console.log('localeDateString', {newDate, newLocaleDateString}, props.modelValue);
+    // console.log('localeDateString', newLocaleDateString, newDate?.toJSON());
     
     if(newDate && calDate.value?.toLocaleDateString() !== newLocaleDateString) {
         calDate.value = newDate;

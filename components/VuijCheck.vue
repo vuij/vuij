@@ -126,6 +126,7 @@ const changeChecked = (isChecked: boolean) => {
 // Синхронизация при изменении modelValue извне
 watch(() => props.modelValue, (newVal) => {
   if (localValue.value !== newVal) localValue.value = newVal;
+  
   if (props.type === 'checkbox' && props.multiple && !Array.isArray(newVal)) {
     console.warn('VCheck: multiple mode requires array modelValue')
     // todo try toArray ?

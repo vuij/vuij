@@ -343,7 +343,7 @@ class Http {
                     // }
 
                 if(this.options.method !== 'GET' && this.options.method !== 'HEAD') {
-                    if(this.params.jsonRequest && typeof _body !== 'string') {
+                    if(this.params.jsonRequest && _body && typeof _body !== 'string') {
                         if(_body instanceof HTMLFormElement) _body = new FormData(_body);
                         if(_body instanceof FormData) _body = Http.fd2obj(_body);
                         _body = JSON.stringify(_body);

@@ -46,6 +46,42 @@ export function Form2Obj(form, cb) {
     return Object.fromEntries([...new FormData(form).entries()].map(x => cb(x[0], x[1])).filter(v => !!v));
 }
 
+export function Form2ObjDeep(form) {
+    const formData = new FormData(form);
+    const result = {};
+
+    for (let [key, value] of formData.entries()) {
+        // Обрабатываем ключи вида "person[last_name]" или "array[]"
+        const keys = key.split(/[\[\]]/).filter(k => k !== '');
+        let current = result;
+        
+        for (let i = 0; i < keys.length; i++) {
+            const k = keys[i];
+            // Если следующий ключ — число или пустая скобка (для массива), создаём массив
+            if (i === keys.length - 1) {
+                if (k in current) {
+                    // Если ключ уже существует, преобразуем в массив
+                    if (!Array.isArray(current[k])) {
+                        current[k] = [current[k]];
+                    }
+                    current[k].push(value);
+                } else {
+                    current[k] = value;
+                }
+            } else {
+                if (!(k in current)) {
+                    // Определяем, массив ли следующий ключ (если последует число или пусто)
+                    const nextKey = keys[i + 1];
+                    current[k] = nextKey === '' || !isNaN(Number(nextKey)) ? [] : {};
+                }
+                current = current[k];
+            }
+        }
+    }
+    
+    return result;
+}
+
 // export function sortObj(o, cb) {
 //     return Object.keys(o).sort(cb).reduce((a, k) => { a[k] = o[k]; return a; }, {});
 // }
