@@ -31,7 +31,7 @@ export default {
 		id: {
 			type: String,
 			default() {
-				return uniqueId("_vew_form_");
+				return uniqueId("_vuij_form_");
 			},
 		},
 		// resetText: {
@@ -106,19 +106,13 @@ export default {
         formInvalid(e) {
 			e.preventDefault(); 
 			
-				
-            
 			// this.checkValidity();
-
 			// const form = e.target?.form,//||this.$refs.form
 			// this.$emit('invalid', e, this.getFormObject(form, this.strict), this.disabled);//||this.$refs.form; 
         },
 
 		formSubmit(e) {
-			console.log('>>>> formSubmit?');
-
 			e.preventDefault();//if?
-
 
 			const form = this.$refs.form,//||e.target?.form
 				obj = this.getFormObject(form, this.strict);

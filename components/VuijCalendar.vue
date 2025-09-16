@@ -94,81 +94,10 @@ import { computed, nextTick, ref, useTemplateRef, watch } from 'vue';
 import VuijAngle from './VuijAngle.vue';
 import VuijListBox from './VuijListBox.vue';
 // import VuijTime from './VuijTime.vue';
+import { Datej } from '../utils/datej.js';
 
-function getWeekStart(lang: string) {
-    /**  also see https://gist.github.com/mlconnor/1887156  */
-    /**  also see https://en.wikipedia.org/wiki/Date_format_by_country  */
-    /**  also see https://dev.1c-bitrix.ru/api_help/main/general/lang/format.php  */
-    /**  also see https://github.com/jerryurenaa/language-list/blob/main/language-list-json.json  */
-    /**  need to check it! */
-    const parts = String(lang).match(/^([a-z]{2,3})(?:-([a-z]{3})(?=$|-))?(?:-([a-z]{4})(?=$|-))?(?:-([a-z]{2}|\d{3})(?=$|-))?/i),
-          rgn = parts?.[4],
-          lng = parts?.[1] ?? '',
-          rgnSat = ['AE','AF','BH','DJ','DZ','EG','IQ','IR','JO','KW','LY','OM','QA','SD','SY'],
-          rgnSun = ['AG','AR','AS','AU','BD','BR','BS','BT','BW','BZ','CA','CN','CO','DM','DO','ET','GT','GU','HK','HN',
-                    'ID','IL','IN','JM','JP','KE','KH','KR','LA','MH','MM','MO','MT','MX','MZ','NI','NP','PA','PE','PH','PK',
-                    'PR','PT','PY','SA','SG','SV','TH','TT','TW','UM','US','VE','VI','WS','YE','ZA','ZW'],
-          lngSat = ['ar','arq','arz','fa'],
-          lngSun = ['am','as','bn','dz','en','gn','gu','he','hi','id','ja','jv','km','kn','ko','lo','mh','ml','mr','mt','my',
-                    'ne','om','or','pa','ps','sd','sm','sn','su','ta','te','th','tn','ur','zh','zu'];
-    /* first day in week: 0 - sun, 1 - mon, 2 - sat */
-    return rgn ? ( rgnSun.includes(rgn) ? 0 : rgnSat.includes(rgn) ? 2 : 1 ) 
-               : ( lngSun.includes(lng) ? 0 : lngSat.includes(lng) ? 2 : 1 );
-}
-function getCalendarObject(y: number, m: number, d: number, lang: string) {
-    const now = new Date(), nowY = now.getFullYear(), nowM = now.getMonth(), nowD = now.getDate();
-    y = y ?? nowY;
-    m = m ?? nowM;
-    d = d ?? nowD;
-        // lang = document.head.parentElement.lang || navigator.language, //config
-    const _arr = (n: number) => ([...Array(n).keys()]),
-        _utc = (y: number, m = 0, d = 1) => new Date(Date.UTC(y, m, d)),
-        _iso = (utc: Date) => utc.toJSON(),
-        _ymd = (utc: Date) => _iso(utc).slice(0, 10),
-        _F = (dt: Date, o: object) => new Intl.DateTimeFormat(lang, o).format(dt),
-        first = _utc(y, m, 1),
-        lastDt = _utc(y, m+1, 0).getDate(),
-        weekStart = getWeekStart(lang), //config
-        week = weekStart > 1 ? [6,0,1,2,3,4,5] : (weekStart > 0 ? [1,2,3,4,5,6,0] : [0,1,2,3,4,5,6]),
-        fdIx = week.indexOf(first.getDay()),
-        weekNames = [...week.keys()].map(x => _F(_utc(y, m, (x + 8 - fdIx)), { weekday: 'short' })),
-        monthNames = [...Array(12).keys()].map(_m => _F(_utc(y, _m), { month: "long" }));
-    let obj = [],
-        calArr = _arr(fdIx).reverse().map(x => 0-x).concat(_arr(lastDt).map(x => x+1));
-
-    calArr = calArr.concat(_arr(42-calArr.length).map(x => lastDt+x+1));
-    obj = [...calArr].map((_d) => {
-        const utc = _utc(y, m, _d);
-        return {
-                date: utc,
-                d: utc.getDate(),
-                w: _F(utc, { weekday: 'short' }),
-                // f: _F(utc),/**@todo format by lang/cnfg? */
-                // ymd: _ymd(utc),
-                iso: _iso(utc),
-                // today: (_d===nowD && m===nowM && y===nowY),
-                utcMoon: (new Date(utc.setUTCHours(0,0,0,0))).toJSON(),
-                nowMoon: (new Date(now.setUTCHours(0,0,0,0))).toJSON(),
-                today: (utc.setUTCHours(0,0,0,0)===now.setUTCHours(0,0,0,0)),
-                past: utc<now,
-                future: utc>now,
-                active: _d===d,
-                out: _d < 1 ? -1 : (_d > lastDt ? 1 : 0),
-            };
-    });
-
-    return {
-        obj,
-        monthNames,
-        weekNames, 
-        first, 
-        _ymd, 
-        lang,
-    };
-
-}
-
-const nowMoonUTC = (new Date((new Date()).setUTCHours(0)));//Timej
+// const nowMoonUTC = (new Date((new Date()).setUTCHours(0)));//Timej
+const nowMoonUTC = (new Datej()).setUTCHour(0);//Timej
 
 // const nowDate = nowMoonUTC.getDate();
 const nowMonth = nowMoonUTC.getMonth();
@@ -185,18 +114,19 @@ const props = defineProps({
     }
 })
 
+function isValidDate(date: any) {
+    return date instanceof Date && !isNaN(date.getTime()); // date.toString()!=='Invalid Date' 
+}
 function validDate(date: any) {
-    // console.warn('---->', {date});
     date = date ? (new Date((new Date(date)).setUTCHours(0))) : null;
-    return date instanceof Date && !isNaN(date.getTime()) ? date : null;
+    return isValidDate(date) ? date : null;
 }
 function dateToShort(date?: Date) {
-    // return date.toJSON().slice(0,10)
-    return date instanceof Date ? date.toJSON().split('T').shift() : '';
+    return isValidDate(date) ? date.toJSON().split('T').shift() : '';
 }
 
 
-const initMoonUTC = props.modelValue && (new Date(props.modelValue)).toString()!=='Invalid Date' 
+const initMoonUTC = props.modelValue && isValidDate(new Date(props.modelValue))
     ? (new Date((new Date(props.modelValue)).setUTCHours(0))) 
     : nowMoonUTC;
 
@@ -207,7 +137,7 @@ const calendar = computed(() => {
     const date = calendarDate.value instanceof Date ? calendarDate.value : nowMoonUTC,
         [y,m,d] = dateToShort(date)?.split('-')?.map(Number) ?? [nowFullYear, nowMonth, nowMoonUTC.getDate()]; // ?? for ts
         
-    return getCalendarObject(y,m-1,d,props.lang??'ru');
+    return Datej.getCalendarObject(y,m-1,d,props.lang??'ru');
 });
 
 const listRef = computed(() => (mode.value === 'y') ? yearsRef.value?.listRef : ((mode.value === 'm') ? monthsRef.value?.listRef : daysRef.value?.listRef));

@@ -254,6 +254,7 @@ class Http {
             // if(this.params.jsonRequest && this.options.headers.get('content-type') !== 'application/json') this.options.headers.set('content-type', 'application/json');
             // if(!this.params.jsonRequest && this.options.headers.get('content-type') === 'application/json') this.params.jsonRequest = true;
             if(this.params.jsonRequest) this.options.headers.set('content-type', 'application/json');
+            else if(this.params.jsonRequest) this.options.headers.set('content-type', 'application/json'); //application/x-www-form-urlencoded
 
             if(this.params.jsonResponse && this.options.headers.get('accept') !== 'application/json') this.options.headers.set('accept', 'application/json');
             // if(!this.params.jsonResponse && this.options.headers.get('accept') === 'application/json') this.params.jsonResponse = true;
@@ -360,10 +361,17 @@ class Http {
                     }
                     // files?
 
-                    // LARAVEL way
-                    if(!this.params.jsonRequest && this.options.method !== 'POST') {
-                        _body.append('_method', this.options.method);
-                        this.options.method = 'POST';
+                    if(!this.params.jsonRequest) {
+                        // LARAVEL way
+                        if(this.options.method !== 'POST') {
+                            _body.append('_method', this.options.method);
+                            this.options.method = 'POST';
+                        }
+                        if(this.options.headers.get('content-type')==='application/json') {
+                            // this.options.headers.set('content-type', 'application/x-www-form-urlencoded')
+                            // this.options.headers.set('content-type', 'multipart/form-data')
+                            this.options.headers.delete('content-type')
+                        }
                     }
 
                 }

@@ -1,11 +1,10 @@
 {
     "name": "vuij",
-    "version": "2.0.5",
+    "version": "2.0.7",
     "author": "trunow",
     "scripts": {
         "test": "echo 'vuij'",
         "u": "rm -rf node_modules && npm i",
-        "prepublishOnly": "npm version patch",
         "#prepublishOnly": "npm version patch -m 'Bump version to %s'",
         "#postpublish": "git push origin main --tags"
     },
